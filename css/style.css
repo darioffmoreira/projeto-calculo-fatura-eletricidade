@@ -22,6 +22,22 @@ body.dark {
     --footer-bg: #1a1a1a;
 }
 
+/* Auto dark mode */
+@media (prefers-color-scheme: dark) {
+    body {
+        --bg: #121212;
+        --text: #e0e0e0;
+        --section-bg: #1e1e1e;
+        --input-bg: #2a2a2a;
+        --input-border: #555;
+        --resultado-bg: #2a2a2a;
+        --footer-bg: #1a1a1a;
+    }
+    #themeToggle {
+        content: '☀️';
+    }
+}
+
 * {
     box-sizing: border-box;
 }
@@ -35,7 +51,7 @@ body {
     line-height: 1.6;
 }
 
-header {
+header.header-card {
     background: var(--primary);
     color: white;
     padding: 20px;
@@ -44,6 +60,9 @@ header {
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 header h1 {
@@ -86,13 +105,28 @@ footer {
     top: 6px;
 }
 
-.container {
-    max-width: 1100px;
-    margin: auto;
-    background: var(--section-bg);
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+.layout-wrapper {
+    display: flex;
+    gap: 20px;
+}
+
+.main-content {
+    flex: 1;
+}
+
+.sidebar-ad {
+    width: 250px;
+    flex-shrink: 0;
+}
+
+/* Hide sidebar on mobile */
+@media (max-width: 900px) {
+    .layout-wrapper {
+        flex-direction: column;
+    }
+    .sidebar-ad {
+        display: none;
+    }
 }
 
 h2 {
@@ -123,6 +157,59 @@ legend {
 
 h4 {
     color: var(--text);
+}
+
+/* Card styles */
+.input-card, .ad-card, .result-card, .footer-card {
+    background: var(--section-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.ad-card {
+    text-align: center;
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+}
+
+.ad-card a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.ad-card a:hover {
+    text-decoration: underline;
+}
+
+.footer-card {
+    text-align: center;
+    background: var(--footer-bg);
+    color: white;
+    padding: 20px;
+}
+
+.footer-ads {
+    margin-top: 10px;
+}
+
+.footer-ads a {
+    color: #ccc;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer-ads a:hover {
+    color: white;
+}
+
+/* Help icons */
+.help-icon {
+    color: var(--primary);
+    font-weight: bold;
+    cursor: help;
+    margin-left: 5px;
 }
 
 .grid {

@@ -16,17 +16,22 @@
 
 <a href="#main" class="skip-link">Saltar para conteúdo principal</a>
 
-<header title="Cabeçalho da página - Calculadora de Faturas de Eletricidade">
+<header class="header-card">
     <h1>Calculadora Fatura Eletricidade</h1>
-    <button id="themeToggle" aria-label="Alternar entre modo claro e escuro">🌙</button>
+    <button id="themeToggle" aria-label="Alternar entre modo claro e escuro" title="Alternar tema">🌙</button>
 </header>
 
 <main id="main" role="main" class="container">
-<form id="calculatorForm">
+
+    <div class="layout-wrapper">
+
+        <div class="main-content">
+
+            <form id="calculatorForm" class="input-card">
 
 <!-- Leituras Anteriores -->
 <fieldset>
-<legend>Leituras Anteriores (kWh)</legend>
+<legend>Leituras Anteriores (kWh) <span class="help-icon" title="Insira as leituras do contador do mês anterior">?</span></legend>
 <div class="grid grid-3">
     <div>
         <label for="antPonta">Ponta (181)</label>
@@ -45,7 +50,7 @@
 
 <!-- Leituras Atuais -->
 <fieldset>
-<legend>Leituras Atuais (kWh)</legend>
+<legend>Leituras Atuais (kWh) <span class="help-icon" title="Insira as leituras atuais do contador">?</span></legend>
 <div class="grid grid-3">
     <div>
         <label for="atualPonta">Ponta (181)</label>
@@ -63,7 +68,7 @@
 </fieldset>
 
 <fieldset>
-<legend>Tipo de Tarifa e Preços Energia (€ / kWh)</legend>
+<legend>Tipo de Tarifa e Preços Energia (€ / kWh) <span class="help-icon" title="Selecione o tipo de tarifa e insira os preços por kWh">?</span></legend>
 <div class="grid grid-2">
     <div>
         <label for="tarifaType">Tipo de Tarifa</label>
@@ -75,17 +80,17 @@
     </div>
     <div id="precoContainer">
         <div id="precoBTN" style="display:none;">
-            <label for="preco_BTN_unico">Energia (€/kWh)</label>
+            <label for="preco_BTN_unico">Energia (€/kWh) <span class="help-icon" title="Preço único da energia elétrica">?</span></label>
             <input type="number" step="0.0001" id="preco_BTN_unico" min="0" required>
         </div>
         <div id="precoBT" style="display:none;">
             <div class="grid grid-2">
                 <div>
-                    <label for="preco_BT_ponta">Ponta (181)</label>
+                    <label for="preco_BT_ponta">Ponta (181) <span class="help-icon" title="Preço durante horas de ponta">?</span></label>
                     <input type="number" step="0.0001" id="preco_BT_ponta" min="0" required>
                 </div>
                 <div>
-                    <label for="preco_BT_cheiasVazio">Cheias/Vazio (€/kWh)</label>
+                    <label for="preco_BT_cheiasVazio">Cheias/Vazio (€/kWh) <span class="help-icon" title="Preço durante horas cheias e vazio">?</span></label>
                     <input type="number" step="0.0001" id="preco_BT_cheiasVazio" min="0" required>
                 </div>
             </div>
@@ -93,15 +98,15 @@
         <div id="precoT">
             <div class="grid grid-3">
                 <div>
-                    <label for="preco_T_ponta">Ponta (181)</label>
+                    <label for="preco_T_ponta">Ponta (181) <span class="help-icon" title="Preço durante horas de ponta">?</span></label>
                     <input type="number" step="0.0001" id="preco_T_ponta" min="0" required>
                 </div>
                 <div>
-                    <label for="preco_T_cheias">Cheias (182)</label>
+                    <label for="preco_T_cheias">Cheias (182) <span class="help-icon" title="Preço durante horas cheias">?</span></label>
                     <input type="number" step="0.0001" id="preco_T_cheias" min="0" required>
                 </div>
                 <div>
-                    <label for="preco_T_vazio">Vazio (183)</label>
+                    <label for="preco_T_vazio">Vazio (183) <span class="help-icon" title="Preço durante horas de vazio">?</span></label>
                     <input type="number" step="0.0001" id="preco_T_vazio" min="0" required>
                 </div>
             </div>
@@ -112,7 +117,7 @@
 
 <!-- Dados Gerais -->
 <fieldset>
-<legend>Dados Gerais</legend>
+<legend>Dados Gerais <span class="help-icon" title="Informações adicionais para o cálculo">?</span></legend>
 <div class="grid grid-2">
 
     <!-- Dias Faturados -->
@@ -129,7 +134,7 @@
 
     <!-- Potência -->
     <div>
-        <label for="potenciaKva">Potência Contratada (kVA)</label>
+        <label for="potenciaKva">Potência Contratada (kVA) <span class="help-icon" title="Potência elétrica contratada">?</span></label>
         <select id="potenciaKva" required>
             <option value="3.45">3.45 kVA</option>
             <option value="4.6">4.6 kVA</option>
@@ -158,42 +163,65 @@
 
     <!-- Preço Potência -->
     <div>
-        <label for="precoPotenciaDia">Preço Potência por Dia (€)</label>
+        <label for="precoPotenciaDia">Preço Potência por Dia (€) <span class="help-icon" title="Custo diário da potência contratada">?</span></label>
         <input type="number" step="0.0001" id="precoPotenciaDia" min="0" required>
     </div>
 
     <!-- IEC -->
     <div>
-        <label for="iec">IEC (€/kWh)</label>
+        <label for="iec">IEC (€/kWh) <span class="help-icon" title="Imposto Especial de Consumo">?</span></label>
         <input type="number" step="0.0001" id="iec" value="0.001" min="0" required>
     </div>
 
     <!-- Taxa DGEG -->
     <div>
-        <label for="dgeg">Taxa DGEG (€)</label>
+        <label for="dgeg">Taxa DGEG (€) <span class="help-icon" title="Taxa da Direção-Geral de Energia e Geologia">?</span></label>
         <input type="number" step="0.01" id="dgeg" value="0.07" min="0" required>
     </div>
 
     <!-- Taxa Audiovisual -->
     <div>
-        <label for="taxaAudiovisual">Taxa Audiovisual (€)</label>
+        <label for="taxaAudiovisual">Taxa Audiovisual (€) <span class="help-icon" title="Taxa de contribuição audiovisual">?</span></label>
         <input type="number" step="0.01" id="taxaAudiovisual" value="3.02" min="0" required>
     </div>
 
 </div>
 </fieldset>
 
-<button type="submit" aria-label="Calcular o custo total da fatura de eletricidade">Calcular</button>
+                <button type="submit" aria-label="Calcular o custo total da fatura de eletricidade">Calcular</button>
 
-<div class="resultado" id="resultado" aria-live="polite" role="status"></div>
+            </form>
 
-<canvas id="chart" style="display:none; max-width: 100%; height: auto;" aria-label="Gráfico de pizza mostrando a distribuição de custos da fatura de eletricidade"></canvas>
+            <!-- Ad between input and result -->
+            <div class="ad-card ad-horizontal">
+                <p>Anúncio: Economize energia com aparelhos eficientes! <a href="#" target="_blank">Saiba mais</a></p>
+            </div>
 
-</form>
+            <div class="result-card" id="resultCard">
+                <div class="resultado" id="resultado" aria-live="polite" role="status"></div>
+                <canvas id="chart" style="display:none; max-width: 100%; height: auto;" aria-label="Gráfico de pizza mostrando a distribuição de custos da fatura de eletricidade"></canvas>
+            </div>
+
+        </div>
+
+        <!-- Sidebar Ad -->
+        <aside class="sidebar-ad">
+            <div class="ad-card ad-vertical">
+                <p>Anúncio Vertical</p>
+                <p>Conteúdo patrocinado aqui</p>
+                <a href="#" target="_blank">Visitar</a>
+            </div>
+        </aside>
+
+    </div>
+
 </main>
 
-<footer>
-<p>&copy; 2026 Calculadora de Faturas de Eletricidade. Desenvolvido para Portugal.</p>
+<footer class="footer-card">
+    <p>&copy; 2026 Calculadora de Faturas de Eletricidade. Desenvolvido para Portugal.</p>
+    <div class="footer-ads">
+        <a href="#" target="_blank">Parceiro 1</a> | <a href="#" target="_blank">Parceiro 2</a>
+    </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

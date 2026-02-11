@@ -51,6 +51,9 @@ window.onload = function() {
         document.body.classList.add(savedTheme);
         updateThemeIcon(savedTheme);
     }
+
+    // Hide result card initially
+    document.getElementById('resultCard').style.display = 'none';
 };
 
 function toggleTheme() {
@@ -220,4 +223,5 @@ function calcular() {
         }
     });
     document.getElementById('chart').style.display = 'block';
+    document.getElementById('resultCard').style.display = 'block';
 }
