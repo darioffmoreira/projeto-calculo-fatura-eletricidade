@@ -27,6 +27,49 @@ function updatePrices() {
     tInputs.forEach(input => input.required = type === "T");
 }
 
+function loadFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const data = urlParams.get('data');
+    if (data) {
+        try {
+            const inputs = JSON.parse(atob(data));
+            for (const [id, value] of Object.entries(inputs)) {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.value = value;
+                }
+            }
+            updatePrices(); // Update display after loading
+            // Auto-calculate if data loaded from URL
+            setTimeout(() => {
+                calcular();
+            }, 100);
+            return true; // Indicate data was loaded
+        } catch (e) {
+            console.error('Erro ao carregar dados da URL:', e);
+        }
+    }
+    return false;
+}
+
+function generateShareLink() {
+    const inputs = document.querySelectorAll('input, select');
+    const data = {};
+    inputs.forEach(input => {
+        if (input.value) {
+            data[input.id] = input.value;
+        }
+    });
+    const encoded = btoa(JSON.stringify(data));
+    const url = `${window.location.origin}${window.location.pathname}?data=${encoded}`;
+    navigator.clipboard.writeText(url).then(() => {
+        alert('Link copiado para a área de transferência! Partilhe este link para que outros possam ver os mesmos dados.');
+    }).catch(() => {
+        // Fallback: show the URL
+        alert('Link gerado: ' + url + '\n\nCopie e partilhe este link.');
+    });
+}
+
 function saveToLocalStorage() {
     const inputs = document.querySelectorAll('input, select');
     inputs.forEach(input => {
@@ -46,6 +89,9 @@ function loadFromLocalStorage() {
 }
 
 window.onload = function() {
+    // Load from URL params first
+    loadFromURL();
+
     loadFromLocalStorage();
     const inputs = document.querySelectorAll('input, select');
     inputs.forEach(input => {
