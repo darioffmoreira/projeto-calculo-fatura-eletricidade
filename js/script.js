@@ -221,6 +221,15 @@ function calcular() {
         (consumoVazio * precoVazio) +
         (consumoCheias * precoCheias) +
         (consumoPonta * precoPonta);
+
+    // Validation for reasonable energy cost
+    if (energiaSemIVA > 10000 || isNaN(energiaSemIVA)) {
+        console.log("Erro: Custo de energia muito alto ou inválido - Energia sem IVA:", energiaSemIVA, "Preços:", precoVazio, precoCheias, precoPonta);
+        alert("Erro: O custo calculado da energia parece muito alto. Verifique se os preços das tarifas estão corretos (€/kWh) e não foram confundidos com leituras do contador.");
+        document.getElementById("resultado").innerText = "Erro: Preços da energia inválidos ou muito altos.";
+        document.getElementById('resultCard').style.display = 'block';
+        return;
+    }
     console.log("Energia sem IVA:", energiaSemIVA);
 
     let limiteIVA6 = (200 * dias) / 30;
