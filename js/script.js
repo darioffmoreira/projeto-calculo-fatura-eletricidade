@@ -8,9 +8,23 @@ const config = {
 
 function updatePrices() {
     const type = document.getElementById("tarifaType").value;
-    document.getElementById("precoBTN").style.display = type === "BTN" ? "block" : "none";
-    document.getElementById("precoBT").style.display = type === "BT" ? "block" : "none";
-    document.getElementById("precoT").style.display = type === "T" ? "block" : "none";
+    const btnDiv = document.getElementById("precoBTN");
+    const btDiv = document.getElementById("precoBT");
+    const tDiv = document.getElementById("precoT");
+
+    // Show/hide divs
+    btnDiv.style.display = type === "BTN" ? "block" : "none";
+    btDiv.style.display = type === "BT" ? "block" : "none";
+    tDiv.style.display = type === "T" ? "block" : "none";
+
+    // Set required attributes
+    const btnInput = document.getElementById("preco_BTN_unico");
+    const btInputs = [document.getElementById("preco_BT_ponta"), document.getElementById("preco_BT_cheiasVazio")];
+    const tInputs = [document.getElementById("preco_T_ponta"), document.getElementById("preco_T_cheias"), document.getElementById("preco_T_vazio")];
+
+    btnInput.required = type === "BTN";
+    btInputs.forEach(input => input.required = type === "BT");
+    tInputs.forEach(input => input.required = type === "T");
 }
 
 function saveToLocalStorage() {
@@ -132,6 +146,7 @@ function calcular() {
     if (!isValid) {
         alert("Erros encontrados:\n" + errorMessages.join("\n"));
         document.getElementById("resultado").innerText = "Erro: Preencha todos os campos obrigatórios com valores válidos.";
+        document.getElementById('resultCard').style.display = 'block';
         return;
     }
 
@@ -178,13 +193,15 @@ function calcular() {
     if (isNaN(precoPonta) || isNaN(precoCheias) || isNaN(precoVazio)) {
         alert("Erro: Preços da tarifa inválidos. Verifique os valores introduzidos.");
         document.getElementById("resultado").innerText = "Erro: Preços da tarifa inválidos.";
+        document.getElementById('resultCard').style.display = 'block';
         return;
     }
 
     let consumoTotal = consumoVazio + consumoCheias + consumoPonta;
 
     if (consumoTotal <= 0 || isNaN(consumoTotal) || dias <=0) {
-        document.getElementById("resultado").innerText = "Erro: valores inválidos.";
+        document.getElementById("resultado").innerText = "Erro: As leituras atuais devem ser maiores que as anteriores. Verifique os valores introduzidos.";
+        document.getElementById('resultCard').style.display = 'block';
         return;
     }
 
