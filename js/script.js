@@ -288,6 +288,7 @@ function calcular() {
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             plugins: {
                 legend: {
                     position: 'bottom',
@@ -309,7 +310,7 @@ function calcular() {
     window.myConsumptionChart = new Chart(ctx2, {
         type: 'pie',
         data: {
-            labels: ['Ponta', 'Cheias', 'Vazio'],
+            labels: ['Ponta (09:30-12:00, 18:30-21:00)', 'Cheias (07:00-09:30, 12:00-18:30, 21:00-24:00)', 'Vazio (sempre)'],
             datasets: [{
                 data: [consumoPonta, consumoCheias, consumoVazio],
                 backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe']
@@ -317,6 +318,7 @@ function calcular() {
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             plugins: {
                 legend: {
                     position: 'bottom',
