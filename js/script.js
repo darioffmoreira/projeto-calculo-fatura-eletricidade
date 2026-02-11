@@ -263,7 +263,7 @@ function calcular() {
 
     console.log("Cálculo concluído com sucesso.");
 
-    // Generate chart
+    // Generate cost distribution chart
     const ctx = document.getElementById('chart').getContext('2d');
     if (window.myChart) {
         window.myChart.destroy();
@@ -291,5 +291,34 @@ function calcular() {
         }
     });
     document.getElementById('chart').style.display = 'block';
+
+    // Generate consumption by period chart
+    const ctx2 = document.getElementById('consumptionChart').getContext('2d');
+    if (window.myConsumptionChart) {
+        window.myConsumptionChart.destroy();
+    }
+    window.myConsumptionChart = new Chart(ctx2, {
+        type: 'pie',
+        data: {
+            labels: ['Ponta', 'Cheias', 'Vazio'],
+            datasets: [{
+                data: [consumoPonta, consumoCheias, consumoVazio],
+                backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe']
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                },
+                title: {
+                    display: true,
+                    text: 'Distribuição do Consumo por Período'
+                }
+            }
+        }
+    });
+    document.getElementById('consumptionChart').style.display = 'block';
     document.getElementById('resultCard').style.display = 'block';
 }
