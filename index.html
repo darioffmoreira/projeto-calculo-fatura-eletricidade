@@ -4,11 +4,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Calculadora de Faturas de Eletricidade - Tarifas BTN, BT e T em Portugal</title>
+    <title>Calculadora de Faturas de Eletricidade</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
     <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
     <meta name="description" content="Calculadora gratuita para faturas de eletricidade em Portugal.">
+    <meta name="author" content="Dário Moreira">
+    <meta name="copyright" content="© 2026 Dário Moreira. Todos os direitos reservados.">
+    <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -227,7 +230,9 @@
                         <canvas id="consumptionChart" style="display:none; max-width: 400px; height: 200px;"
                             aria-label="Gráfico de pizza mostrando a distribuição de consumo por período"></canvas>
                     </div>
-                    <button type="button" onclick="generateShareLink()" style="margin-top: 20px;">Partilhar Cálculo</button>
+                    <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+                        <button type="button" onclick="generateShareLink()">Partilhar</button>
+                    </div>
                 </div>
 
             </div>
@@ -246,7 +251,18 @@
     </main>
 
     <footer class="footer-card">
-        <p>&copy; 2026 Calculadora de Faturas de Eletricidade.</p>
+        <div style="text-align: center; margin-bottom: 10px;">
+            <p>&copy; 2026 Calculadora de Faturas de Eletricidade. Todos os direitos reservados.</p>
+            <p style="font-size: 0.9em; margin-top: 5px; color: var(--text-secondary);">
+                Esta aplicação é propriedade intelectual de Dário Moreira. Qualquer uso, cópia, modificação,
+                distribuição ou exploração comercial não autorizada é proibida e pode resultar em ações legais.
+            </p>
+            <p style="font-size: 0.8em; margin-top: 5px;">
+                <a href="termos.html" style="color: var(--primary); text-decoration: none;">Termos de Uso</a> |
+                <a href="privacidade.html" style="color: var(--primary); text-decoration: none;">Política de
+                    Privacidade</a>
+            </p>
+        </div>
         <div class="footer-ads">
             <a href="#" target="_blank">Parceiro 1</a> | <a href="#" target="_blank">Parceiro 2</a>
         </div>
