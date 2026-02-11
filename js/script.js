@@ -1,5 +1,11 @@
 // Copyright (c) 2026 Dário Moreira. All rights reserved.
 
+// Configuration
+const config = {
+    showAds: false, // Set to true to show advertisements
+    // Add other config options here
+};
+
 function updatePrices() {
     const type = document.getElementById("tarifaType").value;
     document.getElementById("precoBTN").style.display = type === "BTN" ? "block" : "none";
@@ -54,6 +60,12 @@ window.onload = function() {
 
     // Hide result card initially
     document.getElementById('resultCard').style.display = 'none';
+
+    // Handle ads visibility
+    const ads = document.querySelectorAll('.ad-card, .footer-ads');
+    ads.forEach(ad => {
+        ad.style.display = config.showAds ? 'block' : 'none';
+    });
 };
 
 function toggleTheme() {
