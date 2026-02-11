@@ -219,7 +219,7 @@ h4 {
     bottom: 100%;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--bg-card);
+    background: var(--section-bg);
     color: var(--text);
     padding: 8px 12px;
     border-radius: 4px;
@@ -228,7 +228,7 @@ h4 {
     white-space: nowrap;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     z-index: 1000;
-    border: 1px solid var(--border);
+    border: 1px solid var(--input-border);
     max-width: 300px;
     word-wrap: break-word;
     white-space: normal;
