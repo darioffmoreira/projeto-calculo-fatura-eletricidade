@@ -210,6 +210,28 @@ h4 {
     font-weight: bold;
     cursor: help;
     margin-left: 5px;
+    position: relative;
+}
+
+.help-icon:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-card);
+    color: var(--text);
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: normal;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 1000;
+    border: 1px solid var(--border);
+    max-width: 300px;
+    word-wrap: break-word;
+    white-space: normal;
 }
 
 .grid {
