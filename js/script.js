@@ -62,10 +62,26 @@ window.onload = function() {
     document.getElementById('resultCard').style.display = 'none';
 
     // Handle ads visibility
-    const ads = document.querySelectorAll('.ad-card, .footer-ads');
-    ads.forEach(ad => {
-        ad.style.display = config.showAds ? 'block' : 'none';
-    });
+    if (config.showAds) {
+        const ads = document.querySelectorAll('.ad-card, .footer-ads');
+        ads.forEach(ad => {
+            ad.style.display = 'block';
+        });
+    } else {
+        // Remove ad elements completely
+        const sidebarAd = document.querySelector('.sidebar-ad');
+        if (sidebarAd) {
+            sidebarAd.remove();
+        }
+        const horizontalAd = document.querySelector('.ad-horizontal');
+        if (horizontalAd) {
+            horizontalAd.remove();
+        }
+        const footerAds = document.querySelector('.footer-ads');
+        if (footerAds) {
+            footerAds.remove();
+        }
+    }
 };
 
 function toggleTheme() {
