@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<!-- Copyright (c) 2026 Dário Moreira. All rights reserved. -->
+<html class="no-js" lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Calculadora de Faturas de Eletricidade - Tarifas BTN, BT e T em Portugal</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+<meta name="description" content="Calculadora gratuita para faturas de eletricidade em Portugal.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<a href="#main" class="skip-link">Saltar para conteúdo principal</a>
+
+<header title="Cabeçalho da página - Calculadora de Faturas de Eletricidade">
+    <h1>Calculadora Fatura Eletricidade</h1>
+    <button id="themeToggle" aria-label="Alternar entre modo claro e escuro">🌙</button>
+</header>
+
+<main id="main" role="main" class="container">
+<form id="calculatorForm">
+
+<!-- Leituras Anteriores -->
+<fieldset>
+<legend>Leituras Anteriores (kWh)</legend>
+<div class="grid grid-3">
+    <div>
+        <label for="antPonta">Ponta (181)</label>
+        <input type="number" id="antPonta" min="0" required>
+    </div>
+    <div>
+        <label for="antCheias">Cheias (182)</label>
+        <input type="number" id="antCheias" min="0" required>
+    </div>
+    <div>
+        <label for="antVazio">Vazio (183)</label>
+        <input type="number" id="antVazio" min="0" required>
+    </div>
+</div>
+</fieldset>
+
+<!-- Leituras Atuais -->
+<fieldset>
+<legend>Leituras Atuais (kWh)</legend>
+<div class="grid grid-3">
+    <div>
+        <label for="atualPonta">Ponta (181)</label>
+        <input type="number" id="atualPonta" min="0" required>
+    </div>
+    <div>
+        <label for="atualCheias">Cheias (182)</label>
+        <input type="number" id="atualCheias" min="0" required>
+    </div>
+    <div>
+        <label for="atualVazio">Vazio (183)</label>
+        <input type="number" id="atualVazio" min="0" required>
+    </div>
+</div>
+</fieldset>
+
+<fieldset>
+<legend>Tipo de Tarifa e Preços Energia (€ / kWh)</legend>
+<div class="grid grid-2">
+    <div>
+        <label for="tarifaType">Tipo de Tarifa</label>
+        <select id="tarifaType" onchange="updatePrices()" aria-controls="precoContainer">
+            <option value="BTN" selected>BTN - Tarifa Normal</option>
+            <option value="BT">BT - Tarifa Bi-horária</option>
+            <option value="T">T - Tarifa Tri-horária</option>
+        </select>
+    </div>
+    <div id="precoContainer">
+        <div id="precoBTN" style="display:none;">
+            <label for="preco_BTN_unico">Energia (€/kWh)</label>
+            <input type="number" step="0.0001" id="preco_BTN_unico" min="0" required>
+        </div>
+        <div id="precoBT" style="display:none;">
+            <div class="grid grid-2">
+                <div>
+                    <label for="preco_BT_ponta">Ponta (181)</label>
+                    <input type="number" step="0.0001" id="preco_BT_ponta" min="0" required>
+                </div>
+                <div>
+                    <label for="preco_BT_cheiasVazio">Cheias/Vazio (€/kWh)</label>
+                    <input type="number" step="0.0001" id="preco_BT_cheiasVazio" min="0" required>
+                </div>
+            </div>
+        </div>
+        <div id="precoT">
+            <div class="grid grid-3">
+                <div>
+                    <label for="preco_T_ponta">Ponta (181)</label>
+                    <input type="number" step="0.0001" id="preco_T_ponta" min="0" required>
+                </div>
+                <div>
+                    <label for="preco_T_cheias">Cheias (182)</label>
+                    <input type="number" step="0.0001" id="preco_T_cheias" min="0" required>
+                </div>
+                <div>
+                    <label for="preco_T_vazio">Vazio (183)</label>
+                    <input type="number" step="0.0001" id="preco_T_vazio" min="0" required>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</fieldset>
+
+<!-- Dados Gerais -->
+<fieldset>
+<legend>Dados Gerais</legend>
+<div class="grid grid-2">
+
+    <!-- Dias Faturados -->
+    <div>
+        <label for="diasSelect">Dias Faturados</label>
+        <select id="diasSelect" onchange="diasCustom()" aria-controls="diasCustomInput">
+            <option value="30" selected>30 dias</option>
+            <option value="31">31 dias</option>
+            <option value="28">28 dias</option>
+            <option value="custom">Personalizar</option>
+        </select>
+        <input type="number" id="diasCustomInput" style="display:none; margin-top:6px;" placeholder="Insira número de dias" aria-label="Número de dias faturados personalizados" min="1" max="31" required>
+    </div>
+
+    <!-- Potência -->
+    <div>
+        <label for="potenciaKva">Potência Contratada (kVA)</label>
+        <select id="potenciaKva" required>
+            <option value="3.45">3.45 kVA</option>
+            <option value="4.6">4.6 kVA</option>
+            <option value="5.75">5.75 kVA</option>
+            <option value="6.9">6.9 kVA</option>
+            <option value="10.35">10.35 kVA</option>
+            <option value="13.8">13.8 kVA</option>
+            <option value="17.25">17.25 kVA</option>
+            <option value="20.7">20.7 kVA</option>
+            <option value="24.15">24.15 kVA</option>
+            <option value="27.6">27.6 kVA</option>
+            <option value="31.05">31.05 kVA</option>
+            <option value="34.5">34.5 kVA</option>
+            <option value="37.95">37.95 kVA</option>
+            <option value="41.4">41.4 kVA</option>
+            <option value="44.85">44.85 kVA</option>
+            <option value="48.3">48.3 kVA</option>
+            <option value="51.75">51.75 kVA</option>
+            <option value="55.2">55.2 kVA</option>
+            <option value="58.65">58.65 kVA</option>
+            <option value="62.1">62.1 kVA</option>
+            <option value="65.55">65.55 kVA</option>
+            <option value="69">69 kVA</option>
+        </select>
+    </div>
+
+    <!-- Preço Potência -->
+    <div>
+        <label for="precoPotenciaDia">Preço Potência por Dia (€)</label>
+        <input type="number" step="0.0001" id="precoPotenciaDia" min="0" required>
+    </div>
+
+    <!-- IEC -->
+    <div>
+        <label for="iec">IEC (€/kWh)</label>
+        <input type="number" step="0.0001" id="iec" value="0.001" min="0" required>
+    </div>
+
+    <!-- Taxa DGEG -->
+    <div>
+        <label for="dgeg">Taxa DGEG (€)</label>
+        <input type="number" step="0.01" id="dgeg" value="0.07" min="0" required>
+    </div>
+
+    <!-- Taxa Audiovisual -->
+    <div>
+        <label for="taxaAudiovisual">Taxa Audiovisual (€)</label>
+        <input type="number" step="0.01" id="taxaAudiovisual" value="3.02" min="0" required>
+    </div>
+
+</div>
+</fieldset>
+
+<button type="submit" aria-label="Calcular o custo total da fatura de eletricidade">Calcular</button>
+
+<div class="resultado" id="resultado" aria-live="polite" role="status"></div>
+
+<canvas id="chart" style="display:none; max-width: 100%; height: auto;" aria-label="Gráfico de pizza mostrando a distribuição de custos da fatura de eletricidade"></canvas>
+
+</form>
+</main>
+
+<footer>
+<p>&copy; 2026 Calculadora de Faturas de Eletricidade. Desenvolvido para Portugal.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>
