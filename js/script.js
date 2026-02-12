@@ -6,6 +6,44 @@ const config = {
     // Add other config options here
 };
 
+// Handle ads visibility immediately
+if (!config.showAds) {
+    // Remove ad elements completely
+    const sidebarAd = document.querySelector('.sidebar-ad');
+    if (sidebarAd) {
+        sidebarAd.remove();
+    }
+    const horizontalAd = document.querySelector('.ad-horizontal');
+    if (horizontalAd) {
+        horizontalAd.remove();
+    }
+    const footerAds = document.querySelector('.footer-ads');
+    if (footerAds) {
+        footerAds.remove();
+    }
+}
+
+function submitForm(event) {
+    event.preventDefault();
+    const form = event.target;
+    const data = new FormData(form);
+    fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
+            window.location.href = 'obrigado.html';
+        } else {
+            alert('Erro no envio. Tente novamente.');
+        }
+    }).catch(error => {
+        alert('Erro no envio. Tente novamente.');
+    });
+}
+
 function updatePrices() {
     const type = document.getElementById("tarifaType").value;
     const btnDiv = document.getElementById("precoBTN");
@@ -120,28 +158,6 @@ window.onload = function() {
 
     // Hide result card initially
     document.getElementById('resultCard').style.display = 'none';
-
-    // Handle ads visibility
-    if (config.showAds) {
-        const ads = document.querySelectorAll('.ad-card, .footer-ads');
-        ads.forEach(ad => {
-            ad.style.display = 'block';
-        });
-    } else {
-        // Remove ad elements completely
-        const sidebarAd = document.querySelector('.sidebar-ad');
-        if (sidebarAd) {
-            sidebarAd.remove();
-        }
-        const horizontalAd = document.querySelector('.ad-horizontal');
-        if (horizontalAd) {
-            horizontalAd.remove();
-        }
-        const footerAds = document.querySelector('.footer-ads');
-        if (footerAds) {
-            footerAds.remove();
-        }
-    }
 };
 
 function toggleTheme() {

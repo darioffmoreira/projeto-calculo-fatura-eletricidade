@@ -57,14 +57,14 @@ body {
 header.header-card {
     background: var(--primary);
     color: white;
-    padding: 20px;
+    padding: 10px 15px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 3px;
     border-radius: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
@@ -79,18 +79,43 @@ header h1 {
     color: white;
     font-size: 1.5rem;
     cursor: pointer;
-    margin-top: 0;
+}
+
+.nav-bar {
+    background: var(--section-bg);
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--input-border);
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.nav-bar a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.nav-bar a:hover {
+    color: var(--primary-dark);
+    background: var(--bg);
+    text-decoration: none;
 }
 
 main {
-    padding: 20px;
+    padding: 15px;
 }
 
 footer {
     background: var(--footer-bg);
     color: white;
     text-align: center;
-    padding: 10px;
+    padding: 5px;
     font-size: 0.9rem;
 }
 
@@ -153,7 +178,7 @@ footer {
 
 h2 {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 h3 {
@@ -161,9 +186,9 @@ h3 {
 }
 
 fieldset {
-    margin-bottom: 35px;
+    margin-bottom: 25px;
     background: var(--section-bg);
-    padding: 20px;
+    padding: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     border: 1px solid var(--input-border);
@@ -184,10 +209,10 @@ h4 {
 /* Card styles */
 .input-card, .ad-card, .result-card, .footer-card {
     background: var(--section-bg);
-    padding: 20px;
+    padding: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .ad-card {
@@ -275,10 +300,10 @@ label {
     font-weight: 600;
 }
 
-input, select {
+input, select, textarea {
     width: 100%;
-    padding: 10px;
-    margin-top: 6px;
+    padding: 8px;
+    margin-top: 4px;
     border-radius: 6px;
     border: 1px solid var(--input-border);
     font-size: 14px;
@@ -286,13 +311,17 @@ input, select {
     color: var(--text);
 }
 
-input:focus, select:focus {
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+input:focus, select:focus, textarea:focus {
     outline: none;
     border-color: var(--primary);
 }
 
 button {
-    margin-top: 30px;
     width: 100%;
     padding: 15px;
     font-size: 16px;
@@ -311,6 +340,7 @@ button:hover {
 
 .resultado {
     margin-top: 30px;
+    margin-bottom: 30px;
     background: var(--resultado-bg);
     padding: 20px;
     border-radius: 8px;
@@ -320,7 +350,6 @@ button:hover {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-}
 }
 
 /* Tablet */

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!-- Copyright (c) 2026 Dário Moreira. All rights reserved. -->
+<html class="no-js" lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sugestões, Dúvidas ou Correções - Calculadora de Faturas de Eletricidade</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+    <meta name="description" content="Página de contacto para sugestões, dúvidas ou correções da Calculadora de Faturas de Eletricidade.">
+    <meta name="author" content="Dário Moreira">
+    <meta name="copyright" content="© 2026 Dário Moreira. Todos os direitos reservados.">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <a href="#main" class="skip-link">Saltar para conteúdo principal</a>
+
+    <header class="header-card">
+        <h1>Sugestões, Dúvidas ou Correções</h1>
+        <button id="themeToggle" aria-label="Alternar entre modo claro e escuro" title="Alternar tema">🌙</button>
+    </header>
+
+    <nav class="nav-bar">
+        <a href="index.html">Calculadora</a>
+        <a href="termos.html">Termos de Uso</a>
+        <a href="privacidade.html">Política de Privacidade</a>
+        <a href="sugestoes.html">Sugestões e Contacto</a>
+    </nav>
+
+    <main id="main" role="main" class="container">
+
+        <div class="layout-wrapper">
+
+            <div class="main-content">
+
+                <div class="input-card">
+                    <h2>Contacte-nos</h2>
+                    <p>Se tem sugestões, dúvidas ou encontrou algum erro na Calculadora de Faturas de Eletricidade, utilize o formulário abaixo para nos contactar. Responderemos o mais breve possível.</p>
+
+                    <form action="https://formspree.io/f/mdalavqp" method="POST" onsubmit="submitForm(event)">
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Assunto</label>
+                            <input type="text" id="subject" name="subject" placeholder="Ex: Sugestão, Dúvida, Correção" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Enviar</button>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="footer-card">
+        <div style="text-align: center; margin-bottom: 10px;">
+            <p>&copy; 2026 Calculadora de Faturas de Eletricidade. Todos os direitos reservados.</p>
+            <p style="font-size: 0.9em; margin-top: 5px; color: var(--text-secondary);">
+                Esta aplicação é propriedade intelectual de Dário Moreira. Qualquer uso, cópia, modificação,
+                distribuição ou exploração comercial não autorizada é proibida e pode resultar em ações legais.
+            </p>
+            <p style="font-size: 0.8em; margin-top: 5px;">
+                <a href="index.html" style="color: var(--primary); text-decoration: none;">Voltar à Calculadora</a> |
+                <a href="termos.html" style="color: var(--primary); text-decoration: none;">Termos de Uso</a> |
+                <a href="privacidade.html" style="color: var(--primary); text-decoration: none;">Política de Privacidade</a>
+            </p>
+        </div>
+        <div class="footer-ads">
+            <a href="#" target="_blank">Parceiro 1</a> | <a href="#" target="_blank">Parceiro 2</a>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
